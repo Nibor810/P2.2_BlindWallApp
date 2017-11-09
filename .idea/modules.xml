@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/P2.2_BlindWallApp.iml" filepath="$PROJECT_DIR$/P2.2_BlindWallApp.iml" />
+      <module fileurl="file://D:\AndroidStudioProjects\Jaar 2\P2.2_BlindWallApp\P2.2_BlindWallApp.iml" filepath="D:\AndroidStudioProjects\Jaar 2\P2.2_BlindWallApp\P2.2_BlindWallApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\AndroidStudioProjects\Jaar 2\P2.2_BlindWallApp\app\app.iml" filepath="D:\AndroidStudioProjects\Jaar 2\P2.2_BlindWallApp\app\app.iml" />
     </modules>
   </component>
 </project>
