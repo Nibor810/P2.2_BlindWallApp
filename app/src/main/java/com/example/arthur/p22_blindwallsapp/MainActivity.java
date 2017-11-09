@@ -7,6 +7,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -41,5 +47,38 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         blindWallItems.add(new BlindWallItem(2,"Titel 2","Autheur 2",2017,"DummyDescription 2"));
         blindWallItems.add(new BlindWallItem(3,"Titel 3","Autheur 3",2015,"DummyDescription 3"));
         blindWallItems.add(new BlindWallItem(4,"Titel 4","Autheur 4",2014,"DummyDescription 4"));
+
+        String json = loadJson();
+        JSONArray jsonWalls;
+        JSONObject jsonWall;
+
+        try {
+            jsonWalls = new JSONArray(json);
+            for(int i = 0; i < jsonWalls.length();i++){
+                jsonWall =jsonWalls.getJSONObject(i);
+                BlindWallItem blindWallItem = new BlindWallItem(jsonWall);
+                blindWallItems.add(blindWallItem);
+            }
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+
+
+    }
+
+    public String loadJson(){
+        String json = null;
+        try {
+            InputStream is = this.getAssets().open("walls.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer,"UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 }
