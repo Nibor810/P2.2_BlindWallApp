@@ -29,7 +29,7 @@ public class BlindWallAdapter extends ArrayAdapter<BlindWallItem>{
         TextView titel = convertView.findViewById(R.id.textViewRow_Titel);
         TextView year = convertView.findViewById(R.id.textViewRow_Year);
         titel.setText(item.getTitel());
-        year.setText(item.getYear());
+        year.setText(String.valueOf(item.getYear()));
         return convertView;
     }
 }
