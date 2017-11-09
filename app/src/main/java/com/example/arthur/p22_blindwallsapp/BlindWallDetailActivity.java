@@ -13,6 +13,6 @@ public class BlindWallDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blind_wall_detail);
         Intent intent = getIntent();
         item = (BlindWallItem) intent.getSerializableExtra("BLIND_WALL_ITEM");
-        
+
     }
 }
