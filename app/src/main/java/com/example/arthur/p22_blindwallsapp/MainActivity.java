@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         BlindWallItem item = blindWallItems.get(position);
-        //Intent intent = new Intent(getApplicationContext(),);
-        //intent.putExtra("BLIND_WALL_ITEM", item);
+        Intent intent = new Intent(getApplicationContext(),BlindWallDetailActivity.class);
+        intent.putExtra("BLIND_WALL_ITEM", item);
+        startActivity(intent);
     }
 
     public void loadBlindWallItems(){
