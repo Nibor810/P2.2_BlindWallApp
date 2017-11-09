@@ -1,5 +1,6 @@
 package com.example.arthur.p22_blindwallsapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,11 +28,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        BlindWallItem item = blindWallItems.get(position);
+        Intent intent = new Intent(getApplicationContext(),BlindWallDetailActivity.class);
+        intent.putExtra("BLIND_WALL_ITEM", item);
     }
 
     public void loadBlindWallItems(){
-        //Hier moet de bliendwall json worden ingelezen, vervolgens BlindwallItems van worden gemaakt en in de blindwallitems array worden gestopt
+        //TODO: Hier moet de bliendwall json worden ingelezen, vervolgens BlindwallItems van worden gemaakt en in de blindwallitems array worden gestopt
     }
 }
