@@ -31,5 +31,28 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:id="@+id/textView_Titel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:textSize="30sp"
+            tools:text="Titel" />
+
+        <ScrollView
+            android:id="@+id/scrollview_Description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView_Titel">
+
+            <TextView
+                android:id="@+id/textView_Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Description" />
+        </ScrollView>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
