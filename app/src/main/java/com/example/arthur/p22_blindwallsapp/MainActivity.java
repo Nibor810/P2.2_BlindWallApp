@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter = new BlindWallAdapter(this,blindWallItems);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(this);
-        new BlindWallsList(this);
     }
 
     @Override
