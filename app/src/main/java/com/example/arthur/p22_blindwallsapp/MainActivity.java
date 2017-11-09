@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Blind Walls");
+        loadBlindWallItems();
         listview = findViewById(R.id.main_listview);
         adapter = new BlindWallAdapter(this,blindWallItems);
         listview.setAdapter(adapter);
