@@ -17,6 +17,6 @@ public class BlindWallDetailActivity extends AppCompatActivity {
         TextView titel = findViewById(R.id.textView_Titel);
         TextView description = findViewById(R.id.textView_Description);
         titel.setText(item.getTitel());
-        description.setText(item.getDescription());
+        description.setText(item.getDescriptionEN());
     }
 }

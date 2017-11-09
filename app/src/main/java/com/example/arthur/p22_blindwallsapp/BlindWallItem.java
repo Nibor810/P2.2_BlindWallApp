@@ -14,7 +14,8 @@ public class BlindWallItem implements Serializable{
     private String titel;
     private String author;
     private int year;
-    private String description;
+    private String descriptionEN;
+    private String descriptionNL;
 
     public BlindWallItem(JSONObject json){
         try {
@@ -22,7 +23,8 @@ public class BlindWallItem implements Serializable{
             this.titel = json.getJSONObject("title").getString("en").trim();
             this.author = json.getString("author").trim();
             this.year = json.getInt("year");
-            this.description = description;
+            this.descriptionEN = json.getJSONObject("description").getString("en");
+            this.descriptionNL = json.getJSONObject("description").getString("nl");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -33,7 +35,7 @@ public class BlindWallItem implements Serializable{
         this.titel = titel;
         this.author = author;
         this.year = year;
-        this.description = description;
+        this.descriptionEN = description;
     }
 
     public String getTitel() {
@@ -52,7 +54,11 @@ public class BlindWallItem implements Serializable{
         return id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionEN() {
+        return descriptionEN;
+    }
+
+    public String getDescriptionNL() {
+        return descriptionNL;
     }
 }
