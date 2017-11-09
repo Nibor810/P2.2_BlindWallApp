@@ -1,7 +1,5 @@
 package com.example.arthur.p22_blindwallsapp;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 /**
@@ -15,4 +13,10 @@ public class BlindWallItem implements Serializable{
     private int year;
 
 
+    public BlindWallItem(int id, String titel, String author, int year) {
+        this.id = id;
+        this.titel = titel;
+        this.author = author;
+        this.year = year;
+    }
 }

@@ -30,11 +30,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         BlindWallItem item = blindWallItems.get(position);
-        Intent intent = new Intent(getApplicationContext(),BlindWallDetailActivity.class);
-        intent.putExtra("BLIND_WALL_ITEM", item);
+        //Intent intent = new Intent(getApplicationContext(),);
+        //intent.putExtra("BLIND_WALL_ITEM", item);
     }
 
     public void loadBlindWallItems(){
         //TODO: Hier moet de bliendwall json worden ingelezen, vervolgens BlindwallItems van worden gemaakt en in de blindwallitems array worden gestopt
+        blindWallItems.add(new BlindWallItem(1,"Titel 1","Autheur 1",2016));
+        blindWallItems.add(new BlindWallItem(2,"Titel 2","Autheur 2",2017));
+        blindWallItems.add(new BlindWallItem(3,"Titel 3","Autheur 3",2015));
+        blindWallItems.add(new BlindWallItem(4,"Titel 4","Autheur 4",2014));
     }
 }
