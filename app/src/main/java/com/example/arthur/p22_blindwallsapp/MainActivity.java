@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,17 +46,31 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
+    public void callBlindWallAPI(){
+        String url = "https://api.blindwalls.gallery/apiv2/murals";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                //TODO: Wat bij een response
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //TODO: Wat bij een error
+            }
+        });
+    }
+
     public void loadBlindWallItems(){
         //TODO: Hier moet de bliendwall json worden ingelezen, vervolgens BlindwallItems van worden gemaakt en in de blindwallitems array worden gestopt
         //blindWallItems.add(new BlindWallItem(1,"Titel 1","Autheur 1",2016,"DummyDescription 1"));
         //blindWallItems.add(new BlindWallItem(2,"Titel 2","Autheur 2",2017,"DummyDescription 2"));
         //blindWallItems.add(new BlindWallItem(3,"Titel 3","Autheur 3",2015,"DummyDescription 3"));
         //blindWallItems.add(new BlindWallItem(4,"Titel 4","Autheur 4",2014,"DummyDescription 4"));
-
         String json = loadJson();
         JSONArray jsonWalls;
         JSONObject jsonWall;
-
         try {
             jsonWalls = new JSONArray(json);
             for(int i = 0; i < jsonWalls.length();i++){
@@ -62,9 +81,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         } catch (JSONException e){
             e.printStackTrace();
         }
-
-
-
     }
 
     public String loadJson(){
@@ -81,4 +97,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return json;
     }
+
 }
