@@ -16,9 +16,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 
+import java.util.Locale;
+
 public class BlindWallDetailActivity extends AppCompatActivity {
 
     private BlindWallItem item;
+    TextView description;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +29,20 @@ public class BlindWallDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         item = (BlindWallItem) intent.getSerializableExtra("BLIND_WALL_ITEM");
         TextView titel = findViewById(R.id.textView_Titel);
-        TextView description = findViewById(R.id.textView_Description);
+        description = findViewById(R.id.textView_Description);
         titel.setText(item.getTitel());
-        description.setText(item.getDescriptionEN());
+        setTextToRightLanguage();
         callAPIImage();
+    }
+
+    private void setTextToRightLanguage(){
+        String language = getResources().getConfiguration().locale.getLanguage();
+        if(language.equals("en"))
+            description.setText(item.getDescriptionEN());
+        else if(language.equals("nl"))
+            description.setText(item.getDescriptionNL());
+        else
+            description.setText(item.getDescriptionEN());
     }
 
     private void callAPIImage(){
