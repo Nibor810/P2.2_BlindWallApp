@@ -3,6 +3,7 @@ package com.example.arthur.p22_blindwallsapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Blind Walls");
-        loadBlindWallItems();
-        //callBlindWallAPI();
+        //loadBlindWallItems();
+        callBlindWallAPI();
         listview = findViewById(R.id.main_listview);
         adapter = new BlindWallAdapter(this,blindWallItems);
         listview.setAdapter(adapter);
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //TODO: Wat bij een error
+                Log.d("API_CALL_ERROR", "API CALL ERROR");
             }
         });
     }
