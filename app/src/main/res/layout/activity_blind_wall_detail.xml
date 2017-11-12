@@ -7,7 +7,7 @@
     tools:context="com.example.arthur.p22_blindwallsapp.BlindWallDetailActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/blindwall_Image"
         android:layout_width="0dp"
         android:layout_height="179dp"
         android:layout_marginEnd="8dp"

@@ -1,5 +1,6 @@
 package com.example.arthur.p22_blindwallsapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,14 +32,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView listview;
     private BlindWallAdapter adapter;
     private ArrayList<BlindWallItem> blindWallItems = new ArrayList<>();
-    private RequestQueue requestQueue;
+    //private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Blind Walls");
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        //requestQueue = Volley.newRequestQueue(MainActivity.this);
         //loadBlindWallItems();
         callBlindWallAPI();
         listview = findViewById(R.id.main_listview);
@@ -87,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-
-        requestQueue.add(stringRequest);
+        MyVolleyRequestQueue.getInstance(this).getRequestQueue().add(stringRequest);
+        //requestQueue.add(stringRequest);
     }
 
     public void loadJsonArray(String array){

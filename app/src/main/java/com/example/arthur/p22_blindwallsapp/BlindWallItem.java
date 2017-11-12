@@ -1,5 +1,6 @@
 package com.example.arthur.p22_blindwallsapp;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +17,7 @@ public class BlindWallItem implements Serializable{
     private int year;
     private String descriptionEN;
     private String descriptionNL;
+    private String imageURL;
 
     public BlindWallItem(JSONObject json){
         try {
@@ -25,6 +27,8 @@ public class BlindWallItem implements Serializable{
             this.year = json.getInt("year");
             this.descriptionEN = json.getJSONObject("description").getString("en");
             this.descriptionNL = json.getJSONObject("description").getString("nl");
+            JSONArray imageArray = json.getJSONArray("images");
+            this.imageURL = imageArray.getJSONObject(0).getString("url").toLowerCase();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -60,5 +64,9 @@ public class BlindWallItem implements Serializable{
 
     public String getDescriptionNL() {
         return descriptionNL;
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 }
