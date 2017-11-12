@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 BlindWallItem blindWallItem = new BlindWallItem(jsonWall);
                 blindWallItems.add(blindWallItem);
             }
+            adapter.notifyDataSetChanged();
         } catch (JSONException e){
             e.printStackTrace();
         }
