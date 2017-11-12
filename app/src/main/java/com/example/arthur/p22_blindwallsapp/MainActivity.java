@@ -9,9 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,12 +31,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView listview;
     private BlindWallAdapter adapter;
     private ArrayList<BlindWallItem> blindWallItems = new ArrayList<>();
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Blind Walls");
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
         //loadBlindWallItems();
         callBlindWallAPI();
         listview = findViewById(R.id.main_listview);
@@ -49,27 +55,50 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
     }
 
+//    public void callBlindWallAPI(){
+//        String url = "https://api.blindwalls.gallery/apiv2/murals";
+//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+//
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                loadJsonArray(response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.d("API_CALL_ERROR", "API CALL ERROR");
+//            }
+//        });
+//        requestQueue.add(jsonArrayRequest);
+//    }
+
     public void callBlindWallAPI(){
         String url = "https://api.blindwalls.gallery/apiv2/murals";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-
-            @Override
-            public void onResponse(JSONArray response) {
-                loadJsonArray(response);
-            }
-        }, new Response.ErrorListener() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loadJsonArray(response);
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("API_CALL_ERROR", "API CALL ERROR");
             }
         });
+
+
+        requestQueue.add(stringRequest);
     }
 
-    public void loadJsonArray(JSONArray array){
+    public void loadJsonArray(String array){
         JSONObject jsonWall;
+        JSONArray jsonWalls;
         try {
-            for(int i = 0; i < array.length();i++){
-                jsonWall =array.getJSONObject(i);
+            jsonWalls = new JSONArray(array);
+            int length = jsonWalls.length();
+            for(int i = 0; i < length;i++){
+                jsonWall =jsonWalls.getJSONObject(i);
                 BlindWallItem blindWallItem = new BlindWallItem(jsonWall);
                 blindWallItems.add(blindWallItem);
             }
